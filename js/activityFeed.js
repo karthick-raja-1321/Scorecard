@@ -15,7 +15,13 @@
     el.innerHTML = '';
     (state.feed || []).forEach((item) => {
       const li = document.createElement('li');
-      li.innerHTML = `<strong>${item.message}</strong><span class="event-time">${item.time}</span>`;
+      const strong = document.createElement('strong');
+      strong.textContent = item.message;
+      const time = document.createElement('span');
+      time.className = 'event-time';
+      time.textContent = item.time;
+      li.appendChild(strong);
+      li.appendChild(time);
       el.appendChild(li);
     });
     el.scrollTop = 0;

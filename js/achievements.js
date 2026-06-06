@@ -32,7 +32,18 @@
       ['Quiz Master', state.participants.find((p) => p.badges.some((b) => b.label === 'Quiz Master'))?.name || '—']
     ];
 
-    el.innerHTML = rows.map(([k, v]) => `<div class="achievement-row"><span>${k}</span><strong>${v}</strong></div>`).join('');
+    el.innerHTML = '';
+    rows.forEach(([k, v]) => {
+      const row = document.createElement('div');
+      row.className = 'achievement-row';
+      const label = document.createElement('span');
+      label.textContent = k;
+      const value = document.createElement('strong');
+      value.textContent = v;
+      row.appendChild(label);
+      row.appendChild(value);
+      el.appendChild(row);
+    });
   }
 
   window.EduArena = window.EduArena || {};
